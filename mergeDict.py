@@ -8,6 +8,11 @@ if "h" in sys.argv[1:]:
 else:
     HTML = False
 
+if "r" in sys.argv[1:]:
+    REPEAT = True
+else:
+    REPEAT = False
+
 dictionary = {}
 repeat = []
 
@@ -43,7 +48,7 @@ if len(dictionary) > 0:
         file.write("\n".join(htmlList))
         file.close()
 
-if len(repeat) > 0:
+if REPEAT and len(repeat) > 0:
     file = open(os.path.join(os.getcwd(), "repeat.txt"), "w+", encoding="utf-8")
     file.write("\n".join(repeat))
     file.close()

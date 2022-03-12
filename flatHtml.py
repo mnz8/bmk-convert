@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+展平书签
+"""
 from bs4 import BeautifulSoup
 import os
 
@@ -15,7 +18,9 @@ def singleProcess(filename):
         newList = []
 
         for item in aList:
-            newList.append("<DT><A HREF=\""+item["href"]+"\" >"+item.string+"</A>")
+            if item.string == None:
+                continue
+            newList.append("<DT><A HREF=\"" + item["href"] + "\" >" + item.string + "</A>")
 
         file = open(os.path.join(os.getcwd(), "flat/flat" + suffix), "w+", encoding="utf-8")
         file.write("\n".join(newList))
