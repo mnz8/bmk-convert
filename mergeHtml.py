@@ -10,9 +10,12 @@ ultimate 在先
 形如：
 
 <A HREF="" >HTML <a> 标签的 download 属性</A>
+
+增加排序
 '''
 import os
 import sys
+import operator
 import datetime
 from bs4 import BeautifulSoup
 from xml.sax.saxutils import escape
@@ -34,7 +37,9 @@ def create_dict(param):
             # 打印到报错位置 KeyError: 'href'
             # print(item)
             dictionary[item["href"]] = escape(item.string)
-    return dictionary
+    # 按key升序
+    sort_key_dict = dict(sorted(dictionary.items(), key=operator.itemgetter(0)))
+    return sort_key_dict
 
 
 def create_html(dictionary):
