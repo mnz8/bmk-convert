@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """
-展平书签
+将bookmarks内书签 展平
+
+增加 xml.sax.saxutils escape 转义
 """
-from bs4 import BeautifulSoup
 import os
+from bs4 import BeautifulSoup
+from xml.sax.saxutils import escape
 
 if not os.path.exists("flat"):
     os.mkdir("flat")
@@ -20,7 +23,7 @@ def singleProcess(filename):
         for item in aList:
             if item.string == None:
                 continue
-            newList.append("<DT><A HREF=\"" + item["href"] + "\" >" + item.string + "</A>")
+            newList.append("<DT><A HREF=\"" + item["href"] + "\" >" + escape(item.string) + "</A>")
 
         file = open(os.path.join(os.getcwd(), "flat/flat" + suffix), "w+", encoding="utf-8")
         file.write("\n".join(newList))

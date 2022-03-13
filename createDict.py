@@ -1,9 +1,16 @@
 #!/usr/bin/python3
-from unicodedata import name
-from bs4 import BeautifulSoup
-import json
 import os
 import sys
+import json
+from bs4 import BeautifulSoup
+from xml.sax.saxutils import escape
+"""
+将bookmarks内书签 转为 字典
+
+bs4 解析时 会将内容中的转义字符（&lt;等）转义为正常字符
+增加 xml.sax.saxutils escape 转义
+防止 后续解析 解析错误
+"""
 
 if "c" in sys.argv[1:]:
     COUNT = True
@@ -29,7 +36,10 @@ def singleProcess(filename):
 
         for item in aList:
             if item["href"] not in dictionary:
-                dictionary[item["href"]] = item.string
+                if item.string == None:
+                    dictionary[item["href"]] = item.string
+                else:
+                    dictionary[item["href"]] = escape(item.string)
                 continue
             if item["href"] not in count:
                 count[item["href"]] = 2

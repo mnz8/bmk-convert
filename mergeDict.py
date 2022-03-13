@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+create -> merge
+
+遍历生成的dictionary文件夹 对比合并输出最终的JSON文件
+"""
 import json
 import os
 import sys
