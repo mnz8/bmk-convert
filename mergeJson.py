@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """
-create -> merge
+遍历 dictionary 文件夹，对比合并，输出最终的JSON文件
 
-遍历生成的dictionary文件夹 对比合并输出最终的JSON文件
+命令行参数：
+h ：生成对应的html文件
+r ：生成重复记录文件repeat.txt
 """
 import json
 import os

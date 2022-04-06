@@ -1,17 +1,17 @@
 '''
-ultimate 在先
+将保留书签与新的书签对比，合并生成新的
 
-将生成的ultimate.html 和 新的书签对比
-合并生成新的
+命令行参数：
+参数一：保留文件
+参数二：新的文件
 
-增加 xml.sax.saxutils escape 转义
 
-标签内含有html未转义字符, 影响解析, 导致报错
-形如：
-
-<A HREF="" >HTML <a> 标签的 download 属性</A>
+问题1：标签内含有html未转义字符, 影响解析, 导致报错
+       形如：<A HREF="" >HTML <a> 标签的 download 属性</A>
+       增加 xml.sax.saxutils escape 转义
 
 增加排序
+
 '''
 import os
 import sys

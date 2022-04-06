@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-将bookmarks文件夹内书签 展平
+将 bookmarks 文件夹内书签展平，放在 flat 文件夹
 
 增加 xml.sax.saxutils escape 转义
 """

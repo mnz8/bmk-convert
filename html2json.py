@@ -5,11 +5,14 @@ import json
 from bs4 import BeautifulSoup
 from xml.sax.saxutils import escape
 """
-将bookmarks文件夹内书签 转为 字典
+将 bookmarks 文件夹内书签转为json文件, 存放在 dictionary 文件夹
 
-bs4 解析时 会将内容中的转义字符（&lt;等）转义为正常字符
-增加 xml.sax.saxutils escape 转义
-防止 后续解析 解析错误
+命令行参数：
+c ：对于重复书签是否计数统计
+
+问题1：bs4 解析时 会将内容中的转义字符（&lt;等）转义为正常字符
+       增加 xml.sax.saxutils escape 转义, 防止 后续解析 解析错误
+
 """
 
 if "c" in sys.argv[1:]:
