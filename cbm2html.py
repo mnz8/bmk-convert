@@ -1,5 +1,5 @@
 '''
-chrome bookmarks convert markdown
+chrome bookmarks convert html
 
 命令行参数：
 参数一: bookmarks 文件 或者 bookmarks 文件夹
@@ -7,7 +7,6 @@ chrome bookmarks convert markdown
 xml.sax.saxutils escape 转义
 sorted 排序
 
-python cbm2md.py test/bookmarks.html
 '''
 import os
 import sys
@@ -41,16 +40,16 @@ def create_dict(param, foldername=''):
     return dictionary
 
 
-# 生成 markdown
-def create_markdown(dictionary):
+# 生成新的html
+def create_html(dictionary):
     htmlList = []
     for key, value in dictionary.items():
         # 过滤 None
         if value == None:
             continue
-        htmlList.append("[" + value + "](" + key + ")")
+        htmlList.append("<DT><A HREF=\"" + key + "\" >" + value + "</A>")
     time_suffix = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-    file = open(os.path.join(os.getcwd(), "markdown_" + time_suffix + ".md"), "w+", encoding="utf-8")
+    file = open(os.path.join(os.getcwd(), "ultimate_" + time_suffix + ".html"), "w+", encoding="utf-8")
     file.write("\n".join(htmlList))
     file.close()
 
@@ -69,7 +68,7 @@ def main():
     # 文件
     if os.path.isfile(fullpath):
         if ".html" in receive:
-            create_markdown(create_dict(receive))
+            create_html(create_dict(receive))
             return
         else:
             print("not an html")
@@ -86,7 +85,7 @@ def main():
                     total_dict = {**total_dict, **filename_dict}
         # 按key升序
         sort_key_dict = dict(sorted(total_dict.items(), key=operator.itemgetter(0)))
-        create_markdown(sort_key_dict)
+        create_html(sort_key_dict)
         return
 
     # error
